@@ -1,3 +1,4 @@
+abbreviate angulra angular
 abbreviate attriubte attribute
 abbreviate beign being
 abbreviate berak break
@@ -33,12 +34,15 @@ abbreviate Noen None
 abbreviate nto not
 abbreviate paht path
 abbreviate apth path
+abbreviate passowrd password
 abbreviate pritn print
 abbreviate prdouct product
 abbreviate prodcut product
 abbreviate reqeust request
 abbreviate reuqest request
 abbreviate requst request
+abbreviate resposne response
+abbreviate respnose response
 abbreviate retrun return
 abbreviate reutrn return
 abbreviate retunr return
@@ -47,6 +51,7 @@ abbreviate sefl self
 abbreviate slef self
 abbreviate staet state
 abbreviate stirng string
+abbreviate strgin string
 abbreviate taht that
 abbreviate teh the
 abbreviate tempalte template
