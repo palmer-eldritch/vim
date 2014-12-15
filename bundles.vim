@@ -76,20 +76,25 @@
 
 " Languages {
 
+  " Coffee Script {
+    " support for coffee script in vim
+    NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
+    " tag support for coffee script
+    NeoBundleLazy 'lukaszkorecki/CoffeeTags', {'autoloads': {'filetypes': ['coffee']}}
+  " }
+
   " CSS {
     NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload': {'filetypes': ['css', 'scss', 'sass']}}
   " }
 
   " HTML/XML {
-    NeoBundleLazy 'tpope/vim-ragtag', {'autoload': {'filetypes': ['html', 'xml']}}
-    NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html']}}
+    NeoBundleLazy 'tpope/vim-ragtag', {'autoload': {'filetypes': ['html', 'xml', 'eruby']}}
+    NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'haml', 'eruby']}}
   " }
 
   " Javascript {
     " improved javascript indentation and syntax support in vim
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
-    " support for coffee script in vim
-    NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
     " better json highlighting
     NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['javascript', 'json']}} " {
       let g:vim_json_syntax_conceal = 0
@@ -121,7 +126,14 @@
 " }
 
 " Misc {
-  NeoBundle 'chrisbra/vim_faq'
+  NeoBundle 'chrisbra/vim_faq'  " additional documentation
+  " note taking plugin
+  NeoBundle 'xolox/vim-notes', {'depends': 'xolox/vim-misc'} " {
+    let g:notes_directories = ['~/notes']
+    let g:notes_suffix = '.txt'
+    let g:notes_smart_quotes = 0
+    let g:notes_tab_indents = 0
+  " }
 " }
 
 " Navigation {
