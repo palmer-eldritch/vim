@@ -90,6 +90,7 @@
   " HTML/XML {
     NeoBundleLazy 'tpope/vim-ragtag', {'autoload': {'filetypes': ['html', 'xml', 'eruby']}}
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'haml', 'eruby']}}
+    NeoBundleLazy 'slim-template/vim-slim', {'autoload': {'filetypes': 'slim' }}
   " }
 
   " Javascript {
