@@ -238,43 +238,7 @@
 
   " Status line {
     " rich status line for vim
-    NeoBundle 'Lokaltog/powerline' , {'rtp': 'powerline/bindings/vim'}
-    NeoBundle 'zhaocai/linepower.vim' " themes for powerline
-  " }
-
-" }
-
-" Unite {
-  " base
-  NeoBundle 'Shougo/unite.vim' " {
-    " grep config
-    let g:unite_source_grep_command = 'ack-grep'
-    let g:unite_source_grep_default_opts = '--no-heading --no-color -C4'
-    let g:unite_source_grep_recursive_opt = ''
-
-    " don't touch status line
-    let g:unite_force_overwrite_statusline = 0
-
-    let bundle = neobundle#get('unite.vim')
-    function! bundle.hooks.on_source(bundle)
-      " use smartcase when doing matching
-      call unite#custom#profile('default', 'smartcase', 1)
-    endfunction
-
-    " find outline
-    nnoremap <silent> <leader>o :Unite outline -buffer-name=outlines -start-insert -no-split<CR>
-  " }
-
-  " Sources {
-    " sources for mru files and directories
-    NeoBundleLazy 'Shougo/neomru.vim', {
-      \   'autoload': {
-      \     'unite_sources': ['file_mru', 'directory_mru', 'neomru/file', 'neomru/directory']
-      \   }
-      \ }
-    NeoBundle 'Shougo/unite-help'     " source for vim help
-    NeoBundle 'Shougo/neossh.vim'     " source for files over ssh
-    NeoBundle 'Shougo/unite-outline'  " source for current buffer's headings
+    NeoBundle 'vim-airline/vim-airline'
   " }
 
 " }
