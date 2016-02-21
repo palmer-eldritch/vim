@@ -135,6 +135,8 @@
     let g:notes_smart_quotes = 0
     let g:notes_tab_indents = 0
   " }
+  " nice start page
+  NeoBundle 'mhinz/vim-startify'
 " }
 
 " Navigation {
