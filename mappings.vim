@@ -1,8 +1,15 @@
 " fast down/up with Alt-j/k
-nnoremap <A-j> 5j
-nnoremap <A-k> 5k
-vnoremap <A-j> 5j
-vnoremap <A-k> 5k
+if has("gui_macvim")
+  nnoremap Ï 5j
+  nnoremap È 5k
+  vnoremap Ï 5j
+  vnoremap È 5k
+elseif has("gui")
+  nnoremap <A-j> 5j
+  nnoremap <A-k> 5k
+  vnoremap <A-j> 5j
+  vnoremap <A-k> 5k
+endif
 
 " use enter to go to line number
 nnoremap <CR> G
