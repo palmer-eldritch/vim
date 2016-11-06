@@ -19,7 +19,11 @@
     let g:BufKillCreateMappings = 0
     nnoremap <silent> <leader>q :BW<CR>
   " }
-  NeoBundle 'jlanzarotta/bufexplorer' " manage buffers
+  " manage buffers
+  NeoBundle 'jlanzarotta/bufexplorer' " {
+    let g:bufExplorerShowRelativePath = 1 " Show relative paths
+    let g:bufExplorerSplitRight = 1       " Open split on the right when ,bv is used
+  " }
   NeoBundle 'artnez/vim-wipeout'      " delete unused buffers
 " }
 
@@ -38,6 +42,10 @@
     let g:ycm_key_list_select_completion = ['<C-n>']
     let g:ycm_key_list_previous_completion = ['<C-p>']
   " }
+  " Eclim vim plugin
+  NeoBundle 'dansomething/vim-eclim' " {
+    let g:EclimCompletionMethod = 'omnifunc'
+    " }
 " }
 
 " Color schemes {
@@ -116,7 +124,7 @@
     NeoBundle 'tpope/vim-bundler' " support for bundler
     NeoBundle 'tpope/vim-rails'   " support for rails
     NeoBundle 'tpope/vim-rake'    " support for rake
-    NeoBundle 'tpope/vim-rvm'     " support for rvm
+    NeoBundle 'tpope/vim-rbenv'   " support for rbenv
     NeoBundle 'vim-ruby/vim-ruby' " latest version of ruby runtime files
   " }
 
