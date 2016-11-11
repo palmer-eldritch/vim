@@ -195,6 +195,10 @@
     if executable("ag")
       let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
     endif
+    " on neovim, Ctrl-space doesn't get mapped properly
+    if has('nvim')
+      nnoremap <silent> <C-Space> :CtrlSpace<CR>
+    endif
   " }
 " }
 
