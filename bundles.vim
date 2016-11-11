@@ -43,7 +43,7 @@
     let g:ycm_key_list_previous_completion = ['<C-p>']
   " }
   " Eclim vim plugin
-  NeoBundle 'dansomething/vim-eclim' " {
+  NeoBundle 'dansomething/vim-eclim'
     let g:EclimCompletionMethod = 'omnifunc'
     " }
 " }
@@ -88,7 +88,7 @@
     " support for coffee script in vim
     NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
     " tag support for coffee script
-    NeoBundleLazy 'lukaszkorecki/CoffeeTags', {'autoloads': {'filetypes': ['coffee']}}
+    NeoBundleLazy 'lukaszkorecki/CoffeeTags', {'autoload': {'filetypes': ['coffee']}}
   " }
 
   " CSS {
@@ -138,13 +138,15 @@
   NeoBundle 'chrisbra/vim_faq'  " additional documentation
   " note taking plugin
   NeoBundle 'xolox/vim-notes', {'depends': 'xolox/vim-misc'} " {
-    let g:notes_directories = ['~/notes']
+    let g:notes_directories = ['~/Notes']
     let g:notes_suffix = '.txt'
     let g:notes_smart_quotes = 0
     let g:notes_tab_indents = 0
   " }
   " nice start page
-  NeoBundle 'mhinz/vim-startify'
+  NeoBundle 'mhinz/vim-startify' " {
+    let g:startify_custom_header = ['']
+  " }
 " }
 
 " Navigation {
@@ -180,6 +182,12 @@
 " Project management {
   NeoBundle 'embear/vim-localvimrc'   " per-project vimrc
   NeoBundle 'tpope/vim-projectionist' " project configuration using projections
+  NeoBundle 'vim-ctrlspace/vim-ctrlspace' " {
+    let g:CtrlSpaceFileEngine = 'auto'
+    if executable("ag")
+      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+    endif
+  " }
 " }
 
 " SCM {
@@ -196,6 +204,16 @@
       nnoremap <silent> <leader>h :Gitv<CR>
     " }
     NeoBundle 'idanarye/vim-merginal' " fugitive extension to manage branches
+  " }
+
+" }
+
+" Session management {
+
+  NeoBundle 'xolox/vim-session' " {
+    let g:session_directory = '~/.vim/session' " be compatible with startify
+    let g:session_autosave = 'no'
+    let g:session_command_aliases = 1
   " }
 
 " }
@@ -222,7 +240,8 @@
     \     'explorer': 1
     \   }
     \ } " {
-    let NERDTreeIgnore = ['\.pyc$', '\.o$']
+    let NERDTreeIgnore = ['\.pyc$', '\.o$', '^\.git$', '^\.bundle$', '^\.project$']
+    let NERDTreeShowHidden = 1
     nnoremap <silent> <leader>n :NERDTreeToggle<CR>
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
   " }

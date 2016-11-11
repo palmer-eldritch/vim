@@ -9,6 +9,8 @@ set shell=/bin/bash                 " use bash as shell
 set wildignore=*.swp,*~,*.pyc,*.o   " ignore those files
 set backspace=indent,eol,start      " proper backspace functionnalities
 set path=$PWD/**                    " set path to PWD and subdirs
+set hidden                          " for ctrl-space plugin
+set showtabline=0                   " for ctrl-space plugin
 " }
 
 " UI {
