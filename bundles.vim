@@ -7,7 +7,8 @@
   " support for async execution in vim
   NeoBundle 'Shougo/vimproc.vim', {
     \   'build': {
-    \     'unix': 'make -f make_unix.mak'
+    \     'unix': 'make -f make_unix.mak',
+    \     'mac': 'make -f make_mac.mak'
     \   }
     \ }
 
@@ -35,7 +36,8 @@
   " code completion engine
   NeoBundle 'Valloric/YouCompleteMe', {
     \   'build': {
-    \     'unix': 'sh install.sh --clang-completer --system-libclang'
+    \     'unix': './install.py',
+    \     'mac': './install.py'
     \   }
     \ } " {
     let g:ycm_add_preview_to_completeopt = 0
@@ -44,6 +46,7 @@
   " }
   " Eclim vim plugin
   NeoBundle 'dansomething/vim-eclim'
+    let g:EclimFileTypeValidate = 0
     let g:EclimCompletionMethod = 'omnifunc'
     " }
 " }
@@ -56,6 +59,7 @@
 
   " highlight/fix trailing whitespaces
   NeoBundle 'ntpeters/vim-better-whitespace' " {
+    let g:strip_whitespace_on_save = 1
     let g:better_whitespace_filetypes_blacklist = ['unite']
   " }
 
@@ -138,14 +142,15 @@
   NeoBundle 'chrisbra/vim_faq'  " additional documentation
   " note taking plugin
   NeoBundle 'xolox/vim-notes', {'depends': 'xolox/vim-misc'} " {
-    let g:notes_directories = ['~/Notes']
+    let g:notes_directories = ['~/Dropbox/Notes']
     let g:notes_suffix = '.txt'
     let g:notes_smart_quotes = 0
     let g:notes_tab_indents = 0
   " }
   " nice start page
   NeoBundle 'mhinz/vim-startify' " {
-    let g:startify_custom_header = ['']
+    let g:startify_session_dir = g:cache_root . '/session'
+    let g:startify_custom_header = []
   " }
 " }
 
@@ -163,7 +168,10 @@
     \     'commands': ['Ack', 'AckAdd', 'AckFile', 'AckHelp', 'AckWindow']
     \   }
     \ } " {
-    let g:ackprg='ack-grep --nogroup --column --smart-case --nocolor --follow'
+    if exists('g:search_command')
+      let g:ackprg = g:search_command
+    endif
+    let g:ackhighlight = 1
   " }
 
   NeoBundle 'Lokaltog/vim-easymotion' " move around using visual hints
@@ -211,7 +219,7 @@
 " Session management {
 
   NeoBundle 'xolox/vim-session' " {
-    let g:session_directory = '~/.vim/session' " be compatible with startify
+    let g:session_directory = g:cache_root . '/session'
     let g:session_autosave = 'no'
     let g:session_command_aliases = 1
   " }
@@ -240,8 +248,7 @@
     \     'explorer': 1
     \   }
     \ } " {
-    let NERDTreeIgnore = ['\.pyc$', '\.o$', '^\.git$', '^\.bundle$', '^\.project$']
-    let NERDTreeShowHidden = 1
+    let NERDTreeIgnore = ['\.pyc$', '\.o$']
     nnoremap <silent> <leader>n :NERDTreeToggle<CR>
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
   " }
@@ -268,7 +275,15 @@
 
   " Status line {
     " rich status line for vim
-    NeoBundle 'vim-airline/vim-airline'
+    NeoBundle 'vim-airline/vim-airline' " {
+      let g:airline_exclude_preview = 0
+    " }
   " }
 
+" }
+
+" Neovim {
+  if has('nvim') && has('gui_running')
+    Plug 'equalsraf/neovim-gui-shim'
+  endif
 " }

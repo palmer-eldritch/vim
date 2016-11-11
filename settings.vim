@@ -10,7 +10,6 @@ set wildignore=*.swp,*~,*.pyc,*.o   " ignore those files
 set backspace=indent,eol,start      " proper backspace functionnalities
 set path=$PWD/**                    " set path to PWD and subdirs
 set hidden                          " for ctrl-space plugin
-set showtabline=0                   " for ctrl-space plugin
 " }
 
 " UI {
@@ -50,8 +49,10 @@ set incsearch   " jump to results as you type
 set ignorecase  " ignore case when searching
 set smartcase   " don't ignore case if there's uppercase in pattern
 set hlsearch    " highlight search results
-set grepprg=ack-grep\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-set grepformat=%f:%l:%c:%m
+if exists('g:search_command')
+  let &grepprg = g:search_command . ' $*'
+  set grepformat=%f:%l:%c:%m
+endif
 " }
 
 " Folding {
@@ -63,4 +64,8 @@ set foldlevel=100       " by default, no folds
 set completeopt-=preview  " don't show preview window
 " }
 
+if !has('gui_running')
+  set background=dark
+  set t_Co=256
+endif
 colorscheme xoria256
