@@ -125,6 +125,10 @@
   " }
 
   " Ruby {
+    NeoBundleLazy 'palmer-eldritch/ri.vim', {
+      \ 'autoload': {'filetypes': ['ruby', 'eruby', 'haml', 'slim']},
+      \ 'depends': 'tpope/vim-bundler'
+      \}
     NeoBundle 'tpope/vim-bundler' " support for bundler
     NeoBundle 'tpope/vim-rails'   " support for rails
     NeoBundle 'tpope/vim-rake'    " support for rake
@@ -149,6 +153,8 @@
   " }
   " nice start page
   NeoBundle 'mhinz/vim-startify' " {
+    let g:autoloaded_startify = 1
+    let g:loaded_startify = 1
     let g:startify_session_dir = g:cache_root . '/session'
     let g:startify_custom_header = []
   " }
@@ -175,6 +181,10 @@
   " }
 
   NeoBundle 'Lokaltog/vim-easymotion' " move around using visual hints
+
+  if has('nvim') || has('channel') && has('job')
+    NeoBundle 'metakirby5/codi.vim'
+  endif
 
 " }
 
@@ -284,6 +294,12 @@
     " }
   " }
 
+" }
+
+" Unite {
+  NeoBundle 'Shougo/unite.vim' " Base unite plugin
+  NeoBundle 'Shougo/unite-outline' " tags for current buffer
+  NeoBundle 'tsukkee/unite-tag', {'depends': 'Shougo/neoinclude.vim'}
 " }
 
 " Neovim {

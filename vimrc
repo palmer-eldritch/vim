@@ -5,9 +5,13 @@ let mapleader = ','
   if has('nvim')
     let g:editor_root = expand('~/.config/nvim')
     let g:cache_root = expand('~/.cache/nvim')
+    let g:local_bundle_file = expand('~/.neovimbundle.local.vim')
+    let g:local_config_file = expand('~/.neovimrc.local.vim')
   else
     let g:editor_root = expand('~/.vim')
     let g:cache_root = expand('~/.cache/vim')
+    let g:local_bundle_file = expand('~/.vimbundle.local.vim')
+    let g:local_config_file = expand('~/.vimrc.local.vim')
   endif
 
   let g:bundle_dir = g:cache_root . '/bundle'
@@ -50,8 +54,8 @@ let mapleader = ','
   " load bundles {
     runtime bundles.vim
 
-    if filereadable(expand('~/.bundles.vim'))
-      source ~/.bundles.vim
+    if filereadable(g:local_bundle_file)
+      execute 'source ' . g:local_bundle_file
     endif
   " }
 
@@ -72,16 +76,10 @@ runtime mappings.vim
 " load settings
 runtime settings.vim
 
-" load gui settings
-"if has("gui_running")
-"  " not using gvimrc because it's sourced last
-"  runtime gui.vim
-"endif
-
 " load abbreviations
 runtime abbreviations.vim
 
 " load local settings from ~/.vim/vimrc.local
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
+if filereadable(g:local_config_file)
+  execute 'source ' . g:local_config_file
 endif

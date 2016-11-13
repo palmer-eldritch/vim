@@ -16,7 +16,7 @@ set hidden                          " for ctrl-space plugin
 set cursorcolumn    " highlight current column
 set cursorline      " highlight current line
 set laststatus=2    " always show status line
-set list            " show invisible characters
+set nolist          " do not show invisible characters
 set listchars=tab:>-,extends:>,precedes:<
 set number          " show line numbers
 set numberwidth=5   " width of line numbers
@@ -33,9 +33,9 @@ set expandtab       " expand tabs
 set nowrap          " don't wrap lines
 set linebreak       " when wrap is enabled, break at word
 set shiftround      " round indent to multiple of shiftwidth
-set shiftwidth=4    " autoindent size
-set softtabstop=4   " size of an expanded tab
-set tabstop=4       " size of real tabs
+set shiftwidth=2    " autoindent size
+set softtabstop=2   " size of an expanded tab
+set tabstop=2       " size of real tabs
 " }
 
 " Bell {
