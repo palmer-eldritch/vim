@@ -16,8 +16,8 @@ set hidden                          " for ctrl-space plugin
 set cursorcolumn    " highlight current column
 set cursorline      " highlight current line
 set laststatus=2    " always show status line
-set nolist          " do not show invisible characters
-set listchars=tab:>-,extends:>,precedes:<
+set list            " show invisible characters
+set listchars=nbsp:¬,tab:>-,extends:>,precedes:<
 set number          " show line numbers
 set numberwidth=5   " width of line numbers
 set ruler           " show line and column number of cursor
