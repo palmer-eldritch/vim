@@ -148,8 +148,6 @@
   NeoBundle 'xolox/vim-notes', {'depends': 'xolox/vim-misc'} " {
     let g:notes_directories = ['~/Dropbox/Notes']
     let g:notes_suffix = '.txt'
-    let g:notes_smart_quotes = 0
-    let g:notes_tab_indents = 0
   " }
   " nice start page
   NeoBundle 'mhinz/vim-startify' " {
@@ -303,7 +301,7 @@
 " }
 
 " Neovim {
-  if has('nvim') && has('gui_running')
-    Plug 'equalsraf/neovim-gui-shim'
+  if has('nvim')
+    NeoBundle 'equalsraf/neovim-gui-shim'
   endif
 " }
