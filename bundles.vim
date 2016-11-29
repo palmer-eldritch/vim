@@ -274,6 +274,18 @@
     let g:tagbar_autoclose = 1
     let g:tagbar_autofocus = 1
     nnoremap <silent> <leader>t :TagbarToggle<CR>
+    " config for wsdl
+    let g:tagbar_type_xml = {
+    \ 'ctagstype' : 'WSDL',
+    \ 'kinds'     : [
+    \   'n:namespaces',
+    \   'm:messages',
+    \   'p:portType',
+    \   'o:operations',
+    \   'b:bindings',
+    \   's:service'
+    \  ]
+    \ }
   " }
 
   " Visualize undo tree
