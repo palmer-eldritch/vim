@@ -4,11 +4,20 @@ if has("gui_macvim")
   nnoremap È 5k
   vnoremap Ï 5j
   vnoremap È 5k
-elseif has("gui")
+elseif has("gui_running")
   nnoremap <A-j> 5j
   nnoremap <A-k> 5k
   vnoremap <A-j> 5j
   vnoremap <A-k> 5k
+else
+  "execute "set <M-j>=j"
+  "execute "set <M-k>=k"
+  "execute "set <M-j>=j"
+  "execute "set <M-k>=k"
+  "nnoremap <M-j> 5j
+  "nnoremap <M-k> 5k
+  "vnoremap <M-j> 5j
+  "vnoremap <M-k> 5k
 endif
 
 " use enter to go to line number
@@ -42,6 +51,8 @@ nnoremap <leader>v <C-w>v
 nnoremap <leader>x <C-w>c
 " maximize window vertically with Ctrl-_
 nnoremap <C-_> <C-w>_
+" resize all splits equally (inverse of <C-w>n)
+nnoremap <C-w>N :vnew<CR>
 
 " managing tabs
 nnoremap <leader>tn :tabnew<CR>
@@ -65,7 +76,7 @@ vnoremap < <gv
 " select last pasted text
 nnoremap gV `[v`]
 
-" auto center
+" auto center after search
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
@@ -80,6 +91,13 @@ nnoremap <Left> :bprev<CR>
 nnoremap <Right> :bnext<CR>
 nnoremap <Up> :tabnext<CR>
 nnoremap <Down> :tabprev<CR>
+
+" enable spellcheck for current buffer {
+  " in french
+  nnoremap <F7>  :silent setlocal spell! spelllang=fr<CR>
+  " in english
+  nnoremap <F8>  :silent setlocal spell! spelllang=en<CR>
+" }
 
 " insert mode mappings {
 

@@ -29,15 +29,17 @@
 " }
 
 " Code completion {
-  NeoBundle 'SirVer/ultisnips'                  " snippets management
+  " snippets management
+  NeoBundle 'SirVer/ultisnips' " {
+    let g:UltiSnipsEnableSnipMate = 0
+  " }
   NeoBundle 'honza/vim-snippets'                " snippets for UltiSnips
-  NeoBundle 'matthewsimo/angular-vim-snippets'  " snippets for angularjs
 
   " code completion engine
   NeoBundle 'Valloric/YouCompleteMe', {
     \   'build': {
-    \     'unix': './install.py',
-    \     'mac': './install.py'
+    \     'unix': './install.py --all',
+    \     'mac': './install.py --all'
     \   }
     \ } " {
     let g:ycm_add_preview_to_completeopt = 0
@@ -47,8 +49,22 @@
   " Eclim vim plugin
   NeoBundle 'dansomething/vim-eclim'
     let g:EclimFileTypeValidate = 0
+    let g:EclimXmlValidate = 0
     let g:EclimCompletionMethod = 'omnifunc'
-    " }
+
+    " Use eclim semantic completion for these filetypes instead of ycm
+    " autocmd FileType ruby if &completefunc != '' | let &omnifunc=&completefunc | endif
+    " autocmd FileType ruby setlocal omnifunc=eclim#ruby#complete#CodeComplete
+
+  " Improved tern support with tern_for_vim
+  NeoBundle 'ternjs/tern_for_vim', {
+   \    'build': {
+   \      'unix': 'npm install',
+   \      'mac': 'npm install'
+   \    }
+   \ } " {
+    let g:tern_map_keys = 1
+  " }
 " }
 
 " Color schemes {
@@ -99,6 +115,10 @@
     NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload': {'filetypes': ['css', 'scss', 'sass']}}
   " }
 
+  " Elixir {
+    NeoBundle 'elixir-lang/vim-elixir'
+  " }
+
   " HTML/XML {
     NeoBundleLazy 'tpope/vim-ragtag', {'autoload': {'filetypes': ['html', 'xml', 'eruby']}}
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'haml', 'eruby']}}
@@ -115,6 +135,18 @@
     " syntax for javascript libraries
     NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript', 'coffee']}}
   " }
+
+  " Markdown
+    "NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+    "NeoBundle 'vim-pandoc/vim-pandoc' " {
+    "  let g:pandoc#spell#enabled = 0
+    "" }
+    "NeoBundle 'vim-pandoc/vim-pandoc-after'
+    "  let g:pandoc#after#modules#enabled = ['ultisnips', 'nrrwrgn']
+    "" }
+    "NeoBundle 'tex/vimpreviewpandoc'
+    "NeoBundle 'JamshedVesuna/vim-markdown-preview'
+  "
 
   " PHP {
     NeoBundleLazy 'evidens/vim-twig', {'autoload': {'filetypes': ['twig']}}
@@ -134,6 +166,10 @@
     NeoBundle 'tpope/vim-rake'    " support for rake
     NeoBundle 'tpope/vim-rbenv'   " support for rbenv
     NeoBundle 'vim-ruby/vim-ruby' " latest version of ruby runtime files
+  " }
+
+  " Vimperator config files {
+    NeoBundle 'vimperator/vimperator.vim'
   " }
 
 " }
@@ -210,6 +246,16 @@
   " }
 " }
 
+" REPL {
+  NeoBundle 'ujihisa/repl.vim', {
+    \ 'depends': 'Shougo/vimshell.vim'
+    \}
+
+  NeoBundle 'Shougo/vimshell.vim', {
+    \ 'depends': 'Shougo/vimproc.vim'
+    \}
+" }
+
 " SCM {
 
   " Git {
@@ -223,7 +269,12 @@
       nnoremap <silent> <leader>g :Gitv!<CR>
       nnoremap <silent> <leader>h :Gitv<CR>
     " }
-    NeoBundle 'idanarye/vim-merginal' " fugitive extension to manage branches
+    " fugitive extension to manage branches
+    NeoBundle 'idanarye/vim-merginal' " {
+      " Merginal tries to catch an error in english, so I have to force it...
+      language messages C
+      nnoremap <silent> <leader>m :Merginal<CR>
+    " }
   " }
 
 " }
@@ -253,12 +304,20 @@
 
 " UI {
 
-  " File explorer
+  " File explorer,
+  " two plugins:
+  " - nerdtree-git-plugin: to show git status flags on files in nerdtree
+  " - nerdtree-execute: add execute function to the nerdtree menu (opened by
+  "   pressing m on a node)
   NeoBundleLazy 'scrooloose/nerdtree', {
     \   'autoload': {
     \     'commands': ['NERDTreeToggle', 'NERDTreeFind'],
     \     'explorer': 1
-    \   }
+    \   },
+    \   'depends': [
+    \     'Xuyuanp/nerdtree-git-plugin',
+    \     'ivalkeen/nerdtree-execute'
+    \   ]
     \ } " {
     let NERDTreeIgnore = ['\.pyc$', '\.o$']
     nnoremap <silent> <leader>n :NERDTreeToggle<CR>
@@ -310,6 +369,10 @@
   NeoBundle 'Shougo/unite.vim' " Base unite plugin
   NeoBundle 'Shougo/unite-outline' " tags for current buffer
   NeoBundle 'tsukkee/unite-tag', {'depends': 'Shougo/neoinclude.vim'}
+" }
+
+" vim-devicons: file type glyphs for nerdtree/airline/unite and more {
+"  NeoBundle 'ryanoasis/vim-devicons'
 " }
 
 " Neovim {

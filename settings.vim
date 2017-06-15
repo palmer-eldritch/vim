@@ -10,6 +10,7 @@ set wildignore=*.swp,*~,*.pyc,*.o   " ignore those files
 set backspace=indent,eol,start      " proper backspace functionnalities
 set path=$PWD/**                    " set path to PWD and subdirs
 set hidden                          " for ctrl-space plugin
+set encoding=utf-8
 " }
 
 " UI {
