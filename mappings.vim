@@ -68,6 +68,7 @@ function! s:MyCD()
   endif
 endfunction
 nnoremap <leader>cd :call <SID>MyCD()<CR>:pwd<CR>
+nnoremap <leader>cc :cd %:p:h
 
 " remap < and > in visualmode so that the block stays selected
 vnoremap > >gv
