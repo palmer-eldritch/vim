@@ -195,6 +195,13 @@
     let g:loaded_startify = 1
     let g:startify_session_dir = $VIMCACHEDIR . '/session'
     let g:startify_custom_header = []
+    let g:startify_bookmarks = ['~/config/vim/vimrc']
+    let g:startify_list_order = [
+          \ 'sessions',
+          \ 'bookmarks',
+          \ 'files',
+          \ 'commands'
+          \ ]
   " }
 " }
 
@@ -276,6 +283,8 @@
       " Merginal tries to catch an error in english, so I have to force it...
       language messages C
     " }
+    " show changed lines in sign column
+    NeoBundle 'airblade/vim-gitgutter'
   " }
 
 " }
