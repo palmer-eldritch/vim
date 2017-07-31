@@ -65,6 +65,10 @@ set foldlevel=100       " by default, no folds
 set completeopt-=preview  " don't show preview window
 " }
 
+" Sessions {
+set sessionoptions=blank,curdir,folds,help,localoptions,tabpages,winsize
+" }
+
 if !has('gui_running')
   set background=dark
   set t_Co=256
