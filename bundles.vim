@@ -191,15 +191,21 @@
   " }
   " nice start page
   NeoBundle 'mhinz/vim-startify' " {
-    let g:autoloaded_startify = 1
-    let g:loaded_startify = 1
     let g:startify_session_dir = $VIMCACHEDIR . '/session'
+    let g:startify_change_to_vcs_root = 1
+    let g:startify_files_number = 5
     let g:startify_custom_header = []
-    let g:startify_bookmarks = ['~/config/vim/vimrc']
+    let g:startify_bookmarks = [
+          \ '~/config/vim/vimrc'
+          \ ]
     let g:startify_list_order = [
+          \ ['    Sessions'],
           \ 'sessions',
+          \ ['    Favoris'],
           \ 'bookmarks',
+          \ ['    Derniers fichiers édités'],
           \ 'files',
+          \ ['    Commandes'],
           \ 'commands'
           \ ]
   " }
@@ -299,6 +305,7 @@
     let g:session_extension = '.session'
     let g:session_verbose_message = 0
     let g:session_persist_font = 0
+    let g:session_persist_color = 0
     let g:session_persist_global = 0
     let g:session_command_aliases = 1
     let g:session_menu = 0
