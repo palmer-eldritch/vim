@@ -18,7 +18,6 @@
   " delete buffers without messing up the layout
   NeoBundle 'bufkill.vim' " {
     let g:BufKillCreateMappings = 0
-    nnoremap <silent> <leader>q :BW<CR>
   " }
   " manage buffers
   NeoBundle 'jlanzarotta/bufexplorer' " {
@@ -79,12 +78,7 @@
     let g:better_whitespace_filetypes_blacklist = ['unite']
   " }
 
-  " expand selection incrementally
-  NeoBundle 'terryma/vim-expand-region' " {
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-  " }
-
+  NeoBundle 'terryma/vim-expand-region'           " expand selection incrementally
   NeoBundle 'Raimondi/delimitMate'                " auto close quotes/parenthesis/brackets...
   NeoBundle 'tpope/vim-endwise'                   " add end when opening a block with if/do/def...
   NeoBundle 'kristijanhusak/vim-multiple-cursors' " multiple cursors for vim
@@ -109,6 +103,10 @@
     NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
     " tag support for coffee script
     NeoBundleLazy 'lukaszkorecki/CoffeeTags', {'autoload': {'filetypes': ['coffee']}}
+  " }
+
+  " {
+    NeoBundle 'smancill/conky-syntax.vim'
   " }
 
   " CSS {
@@ -168,6 +166,12 @@
     NeoBundle 'vim-ruby/vim-ruby' " latest version of ruby runtime files
   " }
 
+  " Rust {
+    NeoBundleLazy 'rust-lang/rust.vim', {
+      \ 'autoload': {'filetypes': ['rust']}
+      \}
+  " }
+
   " Vimperator config files {
     NeoBundle 'vimperator/vimperator.vim'
   " }
@@ -189,7 +193,7 @@
   NeoBundle 'mhinz/vim-startify' " {
     let g:autoloaded_startify = 1
     let g:loaded_startify = 1
-    let g:startify_session_dir = g:cache_root . '/session'
+    let g:startify_session_dir = $VIMCACHEDIR . '/session'
     let g:startify_custom_header = []
   " }
 " }
@@ -239,10 +243,6 @@
     if executable("ag")
       let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
     endif
-    " on neovim, Ctrl-space doesn't get mapped properly
-    if has('nvim')
-      nnoremap <silent> <C-Space> :CtrlSpace<CR>
-    endif
   " }
 " }
 
@@ -251,8 +251,13 @@
     \ 'depends': 'Shougo/vimshell.vim'
     \}
 
-  NeoBundle 'Shougo/vimshell.vim', {
-    \ 'depends': 'Shougo/vimproc.vim'
+  NeoBundleLazy 'Shougo/vimshell.vim', {
+    \ 'depends': 'Shougo/vimproc.vim',
+    \ 'autoload': {
+    \   'commands': ['VimShell', 'VimShellCreate', 'VimShellTab', 'VimShellPop', 'VimShellCurrentDir',
+    \                'VimShellBufferDir', 'VimShellExecute', 'VimShellInteractive', 'VimShellSendString',
+    \                'VimShellSendBuffer', 'VimShellClose']
+    \  }
     \}
 " }
 
@@ -265,15 +270,11 @@
       \   'autoload': {
       \     'commands': 'Gitv'
       \   }
-      \ } " {
-      nnoremap <silent> <leader>g :Gitv!<CR>
-      nnoremap <silent> <leader>h :Gitv<CR>
-    " }
+      \ }
     " fugitive extension to manage branches
     NeoBundle 'idanarye/vim-merginal' " {
       " Merginal tries to catch an error in english, so I have to force it...
       language messages C
-      nnoremap <silent> <leader>m :Merginal<CR>
     " }
   " }
 
@@ -282,9 +283,16 @@
 " Session management {
 
   NeoBundle 'xolox/vim-session' " {
-    let g:session_directory = g:cache_root . '/session'
+    let g:session_directory = $VIMCACHEDIR . '/session'
+    let g:session_lock_directory = $VIMCACHEDIR
     let g:session_autosave = 'no'
+    let g:session_autoload = 'no'
+    let g:session_extension = '.session'
+    let g:session_verbose_message = 0
+    let g:session_persist_font = 0
+    let g:session_persist_global = 0
     let g:session_command_aliases = 1
+    let g:session_menu = 0
   " }
 
 " }
@@ -320,8 +328,6 @@
     \   ]
     \ } " {
     let NERDTreeIgnore = ['\.pyc$', '\.o$']
-    nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-    nnoremap <silent> <leader>f :NERDTreeFind<CR>
   " }
 
   " Tags side-panel
@@ -332,7 +338,6 @@
     \ } " {
     let g:tagbar_autoclose = 1
     let g:tagbar_autofocus = 1
-    nnoremap <silent> <leader>t :TagbarToggle<CR>
     " config for wsdl
     let g:tagbar_type_xml = {
     \ 'ctagstype' : 'WSDL',
@@ -352,9 +357,7 @@
     \   'autoload': {
     \     'commands': 'UndoTreeToggle'
     \   }
-    \ } " {
-    nnoremap <silent> <leader>u :UndotreeToggle<CR>
-  " }
+    \ }
 
   " Status line {
     " rich status line for vim

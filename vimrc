@@ -3,18 +3,29 @@ let mapleader = ','
 
 " Configure directories {
   if has('nvim')
-    let g:editor_root = expand('~/.config/nvim')
-    let g:cache_root = expand('~/.cache/nvim')
-    let g:local_bundle_file = expand('~/.neovimbundle.local.vim')
-    let g:local_config_file = expand('~/.neovimrc.local.vim')
+    let $VIMUSERDIR = expand('~/.config/nvim')
+    let $VIMCACHEDIR = expand('~/.cache/nvim')
+    let $VIMLOCALBUNDLE = expand('~/.neovimbundle.local.vim')
+    let $VIMLOCALCONFIG = expand('~/.neovimrc.local.vim')
   else
-    let g:editor_root = expand('~/.vim')
-    let g:cache_root = expand('~/.cache/vim')
-    let g:local_bundle_file = expand('~/.vimbundle.local.vim')
-    let g:local_config_file = expand('~/.vimrc.local.vim')
+    let $VIMUSERDIR = expand('~/.vim')
+    let $VIMCACHEDIR = expand('~/.cache/vim')
+    let $VIMLOCALBUNDLE = expand('~/.vimbundle.local.vim')
+    let $VIMLOCALCONFIG = expand('~/.vimrc.local.vim')
   endif
 
-  let g:bundle_dir = g:cache_root . '/bundle'
+  let $VIMBUNDLEDIR = $VIMCACHEDIR . '/bundle'
+  let $VIMSPELLDIR = $VIMCACHEDIR . '/spell'
+  let s:spell_dir_type = getftype($VIMSPELLDIR)
+  if s:spell_dir_type != 'dir'
+    if !empty(s:spell_dir_type)
+      call delete($VIMSPELLDIR)
+    endif
+    silent execute '!mkdir -p ' . $VIMSPELLDIR
+  endif
+  if isdirectory($VIMSPELLDIR)
+    let &runtimepath = $VIMCACHEDIR . ',' . &runtimepath
+  endif
 " }
 
 " Determine executable command to use for search {
@@ -30,23 +41,23 @@ let mapleader = ','
 " NeoBundle {
 
   " Intall NeoBundle {
-    let neobundle_dir = g:bundle_dir . '/neobundle.vim'
+    let g:neobundle_dir = $VIMBUNDLEDIR . '/neobundle.vim'
     let neobundle_readme = g:neobundle_dir . '/README.md'
 
     if !filereadable(neobundle_readme)
       echo 'Installing NeoBundle'
       echo ''
-      silent execute '!mkdir -p ' . g:bundle_dir
+      silent execute '!mkdir -p ' . $VIMBUNDLEDIR
       silent execute '!git clone https://github.com/Shougo/neobundle.vim ' . neobundle_dir
     endif
   " }
 
   " Init NeoBundle {
     if has('vim_starting')
-      let &runtimepath .= ',' . neobundle_dir
+      execute 'set runtimepath+=' . g:neobundle_dir
     endif
 
-    call neobundle#begin(g:bundle_dir)
+    call neobundle#begin($VIMBUNDLEDIR)
 
     NeoBundleFetch 'Shougo/neobundle.vim'
   " }
@@ -54,8 +65,8 @@ let mapleader = ','
   " load bundles {
     runtime bundles.vim
 
-    if filereadable(g:local_bundle_file)
-      execute 'source ' . g:local_bundle_file
+    if filereadable($VIMLOCALBUNDLE)
+      execute 'source ' . $VIMLOCALBUNDLE
     endif
   " }
 
@@ -70,8 +81,12 @@ let mapleader = ','
 
 " }
 
+" load functions
+runtime globals.vim
+
 " load mappings
 runtime mappings.vim
+runtime bundle_mappings.vim
 
 " load settings
 runtime settings.vim
@@ -80,6 +95,6 @@ runtime settings.vim
 runtime abbreviations.vim
 
 " load local settings from ~/.vim/vimrc.local
-if filereadable(g:local_config_file)
-  execute 'source ' . g:local_config_file
+if filereadable($VIMLOCALCONFIG)
+  execute 'source ' . $VIMLOCALCONFIG
 endif

@@ -1,3 +1,4 @@
+" vim let b\:better_whitespace_enabled=0
 " fast down/up with Alt-j/k
 if has("gui_macvim")
   nnoremap Ï 5j
@@ -10,14 +11,14 @@ elseif has("gui_running")
   vnoremap <A-j> 5j
   vnoremap <A-k> 5k
 else
-  "execute "set <M-j>=j"
-  "execute "set <M-k>=k"
-  "execute "set <M-j>=j"
-  "execute "set <M-k>=k"
-  "nnoremap <M-j> 5j
-  "nnoremap <M-k> 5k
-  "vnoremap <M-j> 5j
-  "vnoremap <M-k> 5k
+  execute "set <M-j>=j"
+  execute "set <M-k>=k"
+  execute "set <M-j>=j"
+  execute "set <M-k>=k"
+  nnoremap <M-j> 5j
+  nnoremap <M-k> 5k
+  vnoremap <M-j> 5j
+  vnoremap <M-k> 5k
 endif
 
 " use enter to go to line number
@@ -36,8 +37,8 @@ vnoremap p "_dP
 " clear highlighting of hlsearch
 nnoremap <silent> <leader>hl :nohlsearch<CR>
 
-" expand folds => Ctrl-Tab
-nnoremap <silent> <C-Tab> <Esc>:set foldlevel=100<CR>
+" expand folds => Shift-Tab
+nnoremap <silent> <S-Tab> :set foldlevel=100<CR>
 
 " use Ctrl-h/j/k/l to move between windows
 nnoremap <C-h> <C-w>h
@@ -58,17 +59,14 @@ nnoremap <C-w>N :vnew<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>te :tabedit
 
-" cd to directory of active buffer
-function! s:MyCD()
-  if exists(':Gcd') " cd to git repo if file is versioned
-    silent Gcd
-  else
-    silent cd %:p:h
-  endif
-endfunction
-nnoremap <leader>cd :call <SID>MyCD()<CR>:pwd<CR>
-nnoremap <leader>cc :cd %:p:h
+" mappings to change directory
+if exists('g:change_directory_mappings')
+  for mapping in keys(g:change_directory_mappings)
+    execute ':nnoremap ' . mapping . ' :call functions#helpers#change_directory(' . string(g:change_directory_mappings[mapping]) . ')<CR>'
+  endfor
+endif
 
 " remap < and > in visualmode so that the block stays selected
 vnoremap > >gv
@@ -87,17 +85,20 @@ nnoremap <silent> g# g#zz
 nnoremap <silent> <C-o> <C-o>zz
 nnoremap <silent> <C-i> <C-i>zz
 
-" remap arrow keys to switch between buffers and tabs
-nnoremap <Left> :bprev<CR>
-nnoremap <Right> :bnext<CR>
-nnoremap <Up> :tabnext<CR>
-nnoremap <Down> :tabprev<CR>
+" remap left/right arrow keys to switch between tabs
+nnoremap <silent> <Left> :tabprev<CR>
+nnoremap <silent> <Right> :tabnext<CR>
+" disable up/down keys
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
 
 " enable spellcheck for current buffer {
-  " in french
-  nnoremap <F7>  :silent setlocal spell! spelllang=fr<CR>
-  " in english
-  nnoremap <F8>  :silent setlocal spell! spelllang=en<CR>
+if exists('g:spellcheck_mappings')
+  for lang in keys(g:spellcheck_mappings)
+    execute ':nnoremap <silent> ' . g:spellcheck_mappings[lang] . " :call functions#helpers#spellcheck_locale('" . lang . "')<CR>"
+    execute ':inoremap <silent> ' . g:spellcheck_mappings[lang] . " <C-o>:call functions#helpers#spellcheck_locale('" . lang . "')<CR>"
+  endfor
+endif
 " }
 
 " insert mode mappings {
