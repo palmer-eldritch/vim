@@ -105,8 +105,8 @@
     NeoBundleLazy 'lukaszkorecki/CoffeeTags', {'autoload': {'filetypes': ['coffee']}}
   " }
 
-  " {
-    NeoBundle 'smancill/conky-syntax.vim'
+  " Conky config {
+    NeoBundle 'smancill/conky-syntax.vim', {'autoload': {'filetypes': 'conkyrc'}}
   " }
 
   " CSS {
@@ -194,6 +194,8 @@
     let g:startify_session_dir = $VIMCACHEDIR . '/session'
     let g:startify_change_to_vcs_root = 1
     let g:startify_files_number = 5
+    let g:startify_session_number = 10
+    let g:starify_session_sort = 1
     let g:startify_custom_header = []
     let g:startify_bookmarks = [
           \ '~/config/vim/vimrc'
@@ -213,13 +215,30 @@
 
 " Navigation {
 
-  NeoBundle 'kien/ctrlp.vim', {'depends': 'tacahiroy/ctrlp-funky'} " {
+  " Open file list with ctrl-p
+  NeoBundleLazy 'kien/ctrlp.vim', {
+    \   'autoload': {
+    \     'commands': ['CtrlP', 'CtrlPBuffer', 'CtrlpMRU', 'CtrlPLastMode',
+    \                  'CtrlPRoot', 'CtrlPClearCache', 'CtrlPClearAllCache']
+    \   },
+    \ } " {
     let g:ctrlp_custom_ignore = {
       \   'dir':  '\v[\/]\.(git|hg|svn)$',
       \ }
   " }
 
-  " Search in files using ack
+  " ctrlp extensions {
+
+    " Use ctrlp interface to list tag matches
+    NeoBundleLazy 'ivalkeen/vim-ctrlp-tjump', {
+      \   'autoload': {
+      \     'commands': ['CtrlPtjump', 'CtrlPtjumpVisual']
+      \   },
+      \   'depends': 'kien/ctrlp.vim'
+      \ }
+  " }
+
+  " Search in files using ack (or ag if present on the system)
   NeoBundleLazy 'mileszs/ack.vim', {
     \   'autoload': {
     \     'commands': ['Ack', 'AckAdd', 'AckFile', 'AckHelp', 'AckWindow']
