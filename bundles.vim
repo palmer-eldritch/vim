@@ -226,7 +226,7 @@
   " Open file list with ctrl-p
   NeoBundle 'ctrlpvim/ctrlp.vim' " {
     let g:ctrlp_custom_ignore = {
-      \   'dir':  '\v[\/]\.(git|hg|svn)$',
+      \   'dir':  '\v[\/]\.(git|hg|svn|bundle)$',
       \ }
   " }
 
