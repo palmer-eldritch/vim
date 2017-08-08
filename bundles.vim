@@ -225,9 +225,11 @@
 
   " Open file list with ctrl-p
   NeoBundle 'ctrlpvim/ctrlp.vim' " {
+    let g:ctrlp_extensions = ['bookmarkdir', 'dir', 'tag']
     let g:ctrlp_custom_ignore = {
-      \   'dir':  '\v[\/]\.(git|hg|svn|bundle)$',
+      \   'dir':  '\v[\/](\.(git|hg|svn|bundle)|vendor\/bundle)$',
       \ }
+    let g:ctrlp_tilde_homedir = 1
   " }
 
   " ctrlp extensions {
