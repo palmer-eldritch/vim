@@ -1,7 +1,7 @@
 if has('nvim')
-  GuiFont DejaVu Sans Mono:h10
+  GuiFont DejaVuSansMono Nerd Font Complete Mono:h10
 else
-  set guifont=DejaVu\ Sans\ Mono
+  set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ 10
 endif
 
 set guioptions-=L

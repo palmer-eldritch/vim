@@ -4,6 +4,9 @@
   NeoBundle 'matchit.zip'       " extend % to match more than single chars
   NeoBundle 'tpope/vim-repeat'  " base for repeating complex commands
 
+  " Run async shell commands
+  NeoBundle 'skywind3000/asyncrun.vim'
+
   " support for async execution in vim
   NeoBundle 'Shougo/vimproc.vim', {
     \   'build': {
@@ -70,6 +73,20 @@
   NeoBundle 'vim-scripts/xoria256.vim'
 " }
 
+" Debugging {
+  " DBGP debugger, works for all languages with a compatible debugger {
+    let g:vdebug_options = {
+      \ 'port': 9555,
+      \ 'server': 'localhost',
+      \ 'timeout': 30,
+      \ 'on_close': 'detach',
+      \ 'break_on_open': 1,
+      \ 'debug_window_level': 2
+      \ }
+  " }
+  NeoBundle 'joonty/vdebug'
+" }
+
 " Editing {
 
   " highlight/fix trailing whitespaces
@@ -125,26 +142,17 @@
 
   " Javascript {
     " improved javascript indentation and syntax support in vim
-    NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+    NeoBundle 'pangloss/vim-javascript'
     " better json highlighting
-    NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['javascript', 'json']}} " {
+    NeoBundle 'elzr/vim-json'
       let g:vim_json_syntax_conceal = 0
     " }
     " syntax for javascript libraries
-    NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript', 'coffee']}}
-  " }
-
-  " Markdown
-    "NeoBundle 'vim-pandoc/vim-pandoc-syntax'
-    "NeoBundle 'vim-pandoc/vim-pandoc' " {
-    "  let g:pandoc#spell#enabled = 0
-    "" }
-    "NeoBundle 'vim-pandoc/vim-pandoc-after'
-    "  let g:pandoc#after#modules#enabled = ['ultisnips', 'nrrwrgn']
-    "" }
-    "NeoBundle 'tex/vimpreviewpandoc'
-    "NeoBundle 'JamshedVesuna/vim-markdown-preview'
-  "
+    NeoBundle 'othree/javascript-libraries-syntax.vim', {'depends': 'pangloss/vim-javascript'}
+    " jsx syntax
+    NeoBundle 'mxw/vim-jsx' " {
+      let g:jsx_ext_required = 0
+    " }
 
   " PHP {
     NeoBundleLazy 'evidens/vim-twig', {'autoload': {'filetypes': ['twig']}}
@@ -158,7 +166,7 @@
     NeoBundleLazy 'palmer-eldritch/ri.vim', {
       \ 'autoload': {'filetypes': ['ruby', 'eruby', 'haml', 'slim']},
       \ 'depends': 'tpope/vim-bundler'
-      \}
+      \ }
     NeoBundle 'tpope/vim-bundler' " support for bundler
     NeoBundle 'tpope/vim-rails'   " support for rails
     NeoBundle 'tpope/vim-rake'    " support for rake
@@ -169,7 +177,7 @@
   " Rust {
     NeoBundleLazy 'rust-lang/rust.vim', {
       \ 'autoload': {'filetypes': ['rust']}
-      \}
+      \ }
   " }
 
   " Vimperator config files {
@@ -216,21 +224,15 @@
 " Navigation {
 
   " Open file list with ctrl-p
-  NeoBundleLazy 'kien/ctrlp.vim', {
-    \   'autoload': {
-    \     'commands': ['CtrlP', 'CtrlPBuffer', 'CtrlpMRU', 'CtrlPLastMode',
-    \                  'CtrlPRoot', 'CtrlPClearCache', 'CtrlPClearAllCache']
-    \   },
-    \ } " {
+  NeoBundle 'ctrlpvim/ctrlp.vim' " {
     let g:ctrlp_custom_ignore = {
       \   'dir':  '\v[\/]\.(git|hg|svn)$',
       \ }
   " }
 
   " ctrlp extensions {
-
     " Use ctrlp interface to list tag matches
-    NeoBundleLazy 'ivalkeen/vim-ctrlp-tjump', {
+    NeoBundle 'ivalkeen/vim-ctrlp-tjump', {
       \   'autoload': {
       \     'commands': ['CtrlPtjump', 'CtrlPtjumpVisual']
       \   },
@@ -268,6 +270,7 @@
 " }
 
 " Project management {
+" https://github.com/LucHermitte/local_vimrc#_vimrc_localvim-content
   NeoBundle 'embear/vim-localvimrc'   " per-project vimrc
   NeoBundle 'tpope/vim-projectionist' " project configuration using projections
   NeoBundle 'vim-ctrlspace/vim-ctrlspace' " {
@@ -281,7 +284,7 @@
 " REPL {
   NeoBundle 'ujihisa/repl.vim', {
     \ 'depends': 'Shougo/vimshell.vim'
-    \}
+    \ }
 
   NeoBundleLazy 'Shougo/vimshell.vim', {
     \ 'depends': 'Shougo/vimproc.vim',
@@ -290,7 +293,7 @@
     \                'VimShellBufferDir', 'VimShellExecute', 'VimShellInteractive', 'VimShellSendString',
     \                'VimShellSendBuffer', 'VimShellClose']
     \  }
-    \}
+    \ }
 " }
 
 " SCM {
@@ -310,6 +313,8 @@
     " }
     " show changed lines in sign column
     NeoBundle 'airblade/vim-gitgutter'
+    " easier diffs, stage hunks, amend commits
+    NeoBundle 'jreybert/vimagit'
   " }
 
 " }
@@ -352,17 +357,18 @@
   " - nerdtree-git-plugin: to show git status flags on files in nerdtree
   " - nerdtree-execute: add execute function to the nerdtree menu (opened by
   "   pressing m on a node)
+  " - nerdtree-syntax-highlight: work with vim-devicons to provide different
+  "   colors for file types
   NeoBundleLazy 'scrooloose/nerdtree', {
     \   'autoload': {
     \     'commands': ['NERDTreeToggle', 'NERDTreeFind'],
     \     'explorer': 1
-    \   },
-    \   'depends': [
-    \     'Xuyuanp/nerdtree-git-plugin',
-    \     'ivalkeen/nerdtree-execute'
-    \   ]
+    \   }
     \ } " {
     let NERDTreeIgnore = ['\.pyc$', '\.o$']
+    NeoBundle 'Xuyuanp/nerdtree-git-plugin', {'depends': 'scrooloose/nerdtree'}
+    NeoBundle 'ivalkeen/nerdtree-execute', {'depends': 'scrooloose/nerdtree'}
+    NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight', {'depends': 'scrooloose/nerdtree'}
   " }
 
   " Tags side-panel
@@ -398,19 +404,30 @@
     " rich status line for vim
     NeoBundle 'vim-airline/vim-airline' " {
       let g:airline_exclude_preview = 0
+      if g:terminal != 'console'
+        let g:airline_powerline_fonts = 1
+      endif
+    " }
+    NeoBundle 'vim-airline/vim-airline-themes', {
+    \ 'depends': 'vim-airline/vim-airline'
+    \ } " {
+      if has('gui_running')
+        let g:airline_theme = 'deus'
+      else
+        let g:airline_theme = 'base16_spacemacs'
+      end
     " }
   " }
 
 " }
 
-" Unite {
-  NeoBundle 'Shougo/unite.vim' " Base unite plugin
-  NeoBundle 'Shougo/unite-outline' " tags for current buffer
-  NeoBundle 'tsukkee/unite-tag', {'depends': 'Shougo/neoinclude.vim'}
-" }
-
 " vim-devicons: file type glyphs for nerdtree/airline/unite and more {
-"  NeoBundle 'ryanoasis/vim-devicons'
+  if g:terminal != 'console'
+    NeoBundle 'ryanoasis/vim-devicons' " {
+      let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+      let g:DevIconsEnableFoldersOpenClose = 1
+    " }
+  endif
 " }
 
 " Neovim {

@@ -1,5 +1,12 @@
 set nocompatible
+set guioptions+=M " do not load menu.vim
 let mapleader = ','
+
+if &term=~'linux'
+  let g:terminal = 'console'
+else
+  let g:terminal = ''
+endif
 
 " Configure directories {
   if has('nvim')
