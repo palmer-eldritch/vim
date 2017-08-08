@@ -17,7 +17,7 @@ set encoding=utf-8
 set cursorcolumn    " highlight current column
 set cursorline      " highlight current line
 set laststatus=2    " always show status line
-set list            " show invisible characters
+"set list            " show invisible characters
 set listchars=nbsp:¬,tab:>-,extends:>,precedes:<
 set number          " show line numbers
 set numberwidth=5   " width of line numbers
@@ -66,7 +66,7 @@ set completeopt-=preview  " don't show preview window
 " }
 
 " Sessions {
-set sessionoptions=blank,curdir,folds,help,localoptions,tabpages,winsize
+set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 " }
 
 if !has('gui_running')
