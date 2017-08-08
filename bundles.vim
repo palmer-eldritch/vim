@@ -324,8 +324,9 @@
   NeoBundle 'xolox/vim-session' " {
     let g:session_directory = $VIMCACHEDIR . '/session'
     let g:session_lock_directory = $VIMCACHEDIR
-    let g:session_autosave = 'no'
     let g:session_autoload = 'no'
+    let g:session_autosave = 'yes'
+    let g:session_autosave_periodic = 5
     let g:session_extension = '.session'
     let g:session_verbose_message = 0
     let g:session_persist_font = 0
