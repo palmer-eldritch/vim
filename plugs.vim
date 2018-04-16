@@ -30,6 +30,10 @@
   " code completion framework
   Plug 'roxma/nvim-completion-manager' " {
     let g:cm_refresh_length = 2
+    let g:cm_matcher = {
+      \ 'module': 'cm_matchers.fuzzy_matcher',
+      \ 'case': 'smartcase'
+      \ }
     if !has('nvim')
       Plug 'roxma/vim-hug-neovim-rpc'
     endif
