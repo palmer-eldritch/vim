@@ -12,16 +12,16 @@ endif
   if has('nvim')
     let $VIMUSERDIR = expand('~/.config/nvim')
     let $VIMCACHEDIR = expand('~/.cache/nvim')
-    let $VIMLOCALBUNDLE = expand('~/.neovimbundle.local.vim')
-    let $VIMLOCALCONFIG = expand('~/.neovimrc.local.vim')
+    let $VIMLOCALPLUGS = expand('~/.nvimplugs.local.vim')
+    let $VIMLOCALCONFIG = expand('~/.nvimrc.local.vim')
   else
     let $VIMUSERDIR = expand('~/.vim')
     let $VIMCACHEDIR = expand('~/.cache/vim')
-    let $VIMLOCALBUNDLE = expand('~/.vimbundle.local.vim')
+    let $VIMLOCALPLUGS = expand('~/.vimplugs.local.vim')
     let $VIMLOCALCONFIG = expand('~/.vimrc.local.vim')
   endif
 
-  let $VIMBUNDLEDIR = $VIMCACHEDIR . '/bundle'
+  let $VIMPLUGDIR = $VIMCACHEDIR . '/plugged'
   let $VIMSPELLDIR = $VIMCACHEDIR . '/spell'
   let s:spell_dir_type = getftype($VIMSPELLDIR)
   if s:spell_dir_type != 'dir'
@@ -45,47 +45,18 @@ endif
   endif
 " }
 
-" NeoBundle {
+" Vim-plug {
+  call plug#begin($VIMPLUGDIR)
 
-  " Intall NeoBundle {
-    let g:neobundle_dir = $VIMBUNDLEDIR . '/neobundle.vim'
-    let neobundle_readme = g:neobundle_dir . '/README.md'
+  " load plugins {
+    runtime plugs.vim
 
-    if !filereadable(neobundle_readme)
-      echo 'Installing NeoBundle'
-      echo ''
-      silent execute '!mkdir -p ' . $VIMBUNDLEDIR
-      silent execute '!git clone https://github.com/Shougo/neobundle.vim ' . neobundle_dir
+    if filereadable($VIMLOCALPLUGS)
+      execute 'source ' . $VIMLOCALPLUGS
     endif
   " }
 
-  " Init NeoBundle {
-    if has('vim_starting')
-      execute 'set runtimepath+=' . g:neobundle_dir
-    endif
-
-    call neobundle#begin($VIMBUNDLEDIR)
-
-    NeoBundleFetch 'Shougo/neobundle.vim'
-  " }
-
-  " load bundles {
-    runtime bundles.vim
-
-    if filereadable($VIMLOCALBUNDLE)
-      execute 'source ' . $VIMLOCALBUNDLE
-    endif
-  " }
-
-  " NeoBundle end {
-    call neobundle#end()
-
-    filetype plugin indent on
-    syntax enable
-
-    NeoBundleCheck
-  " }
-
+  call plug#end()
 " }
 
 " load functions
@@ -93,7 +64,7 @@ runtime globals.vim
 
 " load mappings
 runtime mappings.vim
-runtime bundle_mappings.vim
+runtime plugs_mappings.vim
 
 " load settings
 runtime settings.vim

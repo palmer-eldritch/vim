@@ -22,4 +22,3 @@ let g:root_markers = ['.git/', '.git', '.svn/', '.hg/', '.bzr/']
 
 " load custom functions
 runtime functions/helpers.vim
-runtime functions/vimshell.vim

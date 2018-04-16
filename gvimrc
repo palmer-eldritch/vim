@@ -1,10 +1,13 @@
 if has('nvim')
-  GuiFont DejaVuSansMono Nerd Font Complete Mono:h10
-elseif has('gui_macvim')
-  set guifont=DejaVu\ Sans\ Mono\ Nerd\ Font\ Complete\ Mono:h11
+  GuiFont DejaVuSansMono Nerd Font Mono:h10
 else
   set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ 10
 endif
+
+nnoremap <A-j> 5j
+nnoremap <A-k> 5k
+vnoremap <A-j> 5j
+vnoremap <A-k> 5k
 
 set guioptions-=L
 set guioptions-=T
