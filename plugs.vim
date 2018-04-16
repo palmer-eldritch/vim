@@ -26,6 +26,15 @@
 " }
 
 " Code completion {
+
+  " code completion framework
+  Plug 'roxma/nvim-completion-manager' " {
+    let g:cm_refresh_length = 2
+    if !has('nvim')
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+  " }
+
 " }
 
 " Editing {
@@ -44,8 +53,14 @@
 " }
 
 " Languages {
+
   " Python {
+    if has('nvim')
+      " setup pyton for neovim
+      Plug 'roxma/python-support.nvim'
+    endif
   " }
+
 " }
 
 " Marks {
