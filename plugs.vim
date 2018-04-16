@@ -35,6 +35,11 @@
     endif
   " }
 
+  " snippets management
+  Plug 'SirVer/ultisnips' " {
+    Plug 'honza/vim-snippets' " snippets for UltiSnips
+  " }
+
 " }
 
 " Editing {
