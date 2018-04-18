@@ -16,6 +16,7 @@ set encoding=utf-8
 " UI {
 set cursorcolumn    " highlight current column
 set cursorline      " highlight current line
+set colorcolumn=80  " highlight edge of line
 set laststatus=2    " always show status line
 "set list            " show invisible characters
 set listchars=nbsp:¬,tab:>-,extends:>,precedes:<
@@ -26,6 +27,7 @@ set showcmd         " show command being typed
 set showmatch       " show matching characters
 set smarttab        " backspace delete shifwidth spaces
 set wildmenu        " show menu for command line completion
+set splitright      " open vertical splits on the right
 " }
 
 " Text formating/layout {
@@ -74,3 +76,4 @@ if !has('gui_running')
   set t_Co=256
 endif
 colorscheme xoria256
+highlight ColorColumn ctermbg=gray guibg=#222222

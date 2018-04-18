@@ -106,7 +106,7 @@ augroup end
   " insert mode mappings {
 
     " toggle case of word touching cursor in insert mode
-    inoremap <C-f> _<Esc>mzg~iw`z"_s
+    inoremap <C-f> _<Esc>mzg~iw`zmz"_s
 
     " shift-enter in insert mode to insert a new line below
     inoremap <S-CR> <Esc>O

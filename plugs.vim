@@ -61,17 +61,6 @@
 
 " }
 
-" Languages {
-
-  " Python {
-    if has('nvim')
-      " setup pyton for neovim
-      Plug 'roxma/python-support.nvim'
-    endif
-  " }
-
-" }
-
 " Marks {
 
   Plug 'kshenoy/vim-signature'  " show marks next to line numbers
@@ -89,7 +78,7 @@
     let g:starify_session_sort = 1
     let g:startify_custom_header = []
     let g:startify_bookmarks = [
-          \ '~/config/neovim/init.vim'
+          \ '~/config/vim/vimrc'
           \ ]
     let g:startify_list_order = [
           \ ['    Favoris'],
@@ -104,6 +93,12 @@
 " }
 
 " Navigation {
+
+  Plug 'junegunn/fzf', {
+    \   'do': './install --all',
+    \   'dir': '~/.fzf'
+    \ }
+  Plug 'junegunn/fzf.vim'
 
   " Search in files using ack (or ag if present on the system)
   Plug 'mileszs/ack.vim', {
@@ -128,13 +123,23 @@
 
 " }
 
+" Syntax checking {
+
+  " syntax checker
+  Plug 'w0rp/ale' " {
+    let g:ale_linters = {
+      \ 'python': ['flake8', 'pylint'] }
+  " }
+
+" }
+
 " UI {
 
   " File explorer
     Plug 'scrooloose/nerdtree', {
       \ 'on': ['NERDTreeToggle', 'NERDTreeFind']
       \ } " {
-      let NERDTreeIgnore = ['\.pyc$', '\o$']
+      let NERDTreeIgnore = ['\.pyc$', '\.o$', '^__pycache__$']
 
       Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags on files
       Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " color file icons
@@ -157,15 +162,21 @@
         let g:airline_powerline_fonts = 1
       endif
     " }
-    Plug 'vim-airline/vim-airline-themes', {
-    \ 'depends': 'vim-airline/vim-airline'
-    \ } " {
+    Plug 'vim-airline/vim-airline-themes' " {
       if has('gui_running')
         let g:airline_theme = 'deus'
       else
         let g:airline_theme = 'base16_spacemacs'
       end
     " }
+  " }
+
+  " show indent levels
+  Plug 'nathanaelkane/vim-indent-guides' " {
+    "let g:indent_guides_guide_size = 1
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent = 5
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'tagbar']
   " }
 
   " file type glyphs for nerdtree/airline and more
