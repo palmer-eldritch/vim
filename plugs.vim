@@ -28,15 +28,12 @@
 " Code completion {
 
   " code completion framework
-  Plug 'roxma/nvim-completion-manager' " {
-    let g:cm_refresh_length = 2
-    let g:cm_matcher = {
-      \ 'module': 'cm_matchers.fuzzy_matcher',
-      \ 'case': 'smartcase'
-      \ }
+  Plug 'Shougo/deoplete.nvim' " {
     if !has('nvim')
+      Plug 'roxma/nvim-yarp'
       Plug 'roxma/vim-hug-neovim-rpc'
     endif
+    let g:deoplete#enable_at_startup = 1
   " }
 
   " snippets management
@@ -59,6 +56,13 @@
   Plug 'scrooloose/nerdcommenter'             " comment/uncomment lines of code
   Plug 'tpope/vim-surround'                   " surround text with quotes/parenthesis
 
+" }
+
+" Languages {
+  " Python {
+    " jedi plugin for deoplete
+    Plug 'zchee/deoplete-jedi'
+  " }
 " }
 
 " Marks {
