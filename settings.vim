@@ -19,7 +19,7 @@ set cursorline      " highlight current line
 set colorcolumn=80  " highlight edge of line
 set laststatus=2    " always show status line
 "set list            " show invisible characters
-set listchars=nbsp:¬,tab:>-,extends:>,precedes:<
+set listchars=nbsp:¬,tab:>-,extends:>,precedes:<,eol:$
 set number          " show line numbers
 set numberwidth=5   " width of line numbers
 set ruler           " show line and column number of cursor

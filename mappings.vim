@@ -13,10 +13,10 @@ augroup end
     vnoremap Ï 5j
     vnoremap È 5k
   elseif !has('nvim') && !has('gui_running')
-    execute "set <M-j>=j"
-    execute "set <M-k>=k"
-    execute "set <M-j>=j"
-    execute "set <M-k>=k"
+    execute 'set <M-j>=j'
+    execute 'set <M-k>=k'
+    execute 'set <M-j>=j'
+    execute 'set <M-k>=k'
     nnoremap <M-j> 5j
     nnoremap <M-k> 5k
     vnoremap <M-j> 5j
@@ -54,6 +54,14 @@ augroup end
   nnoremap <leader>x <C-w>c
   " maximize window vertically with Ctrl-_
   nnoremap <C-_> <C-w>_
+  " shortcuts for resizing windows
+  nnoremap <leader>+ 6<C-w>+
+  nnoremap <leader>- 6<C-w>-
+  nnoremap <leader>> 10<C-w><
+  nnoremap <leader>< 10<C-w>>
+  nnoremap <leader>\| <C-w>\|
+  nnoremap <leader>_ <C-w>_
+  nnoremap <leader>= <C-w>=
   " resize all splits equally (inverse of <C-w>n)
   nnoremap <C-w>N :vnew<CR>
 
@@ -65,8 +73,8 @@ augroup end
 
   " mappings to change directory
   if exists('g:change_directory_mappings')
-    for mapping in keys(g:change_directory_mappings)
-      execute ':nnoremap ' . mapping . ' :call functions#helpers#change_directory(' . string(g:change_directory_mappings[mapping]) . ')<CR>'
+    for s:mapping in keys(g:change_directory_mappings)
+      execute ':nnoremap ' . s:mapping . ' :call functions#helpers#change_directory(' . string(g:change_directory_mappings[s:mapping]) . ')<CR>'
     endfor
   endif
 
@@ -96,9 +104,9 @@ augroup end
 
   " enable spellcheck for current buffer {
   if exists('g:spellcheck_mappings')
-    for lang in keys(g:spellcheck_mappings)
-      execute ':nnoremap <silent> ' . g:spellcheck_mappings[lang] . " :call functions#helpers#spellcheck_locale('" . lang . "')<CR>"
-      execute ':inoremap <silent> ' . g:spellcheck_mappings[lang] . " <C-o>:call functions#helpers#spellcheck_locale('" . lang . "')<CR>"
+    for s:lang in keys(g:spellcheck_mappings)
+      execute ':nnoremap <silent> ' . g:spellcheck_mappings[s:lang] . " :call functions#helpers#spellcheck_locale('" . s:lang . "')<CR>"
+      execute ':inoremap <silent> ' . g:spellcheck_mappings[s:lang] . " <C-o>:call functions#helpers#spellcheck_locale('" . s:lang . "')<CR>"
     endfor
   endif
   " }

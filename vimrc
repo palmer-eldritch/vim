@@ -1,8 +1,8 @@
 set nocompatible
 set guioptions+=M " do not load menu.vim
-let mapleader = ','
+let g:mapleader = ','
 
-if &term=~'linux'
+if &term=~#'linux'
   let g:terminal = 'console'
 else
   let g:terminal = ''
@@ -24,7 +24,7 @@ endif
   let $VIMPLUGDIR = $VIMCACHEDIR . '/plugged'
   let $VIMSPELLDIR = $VIMCACHEDIR . '/spell'
   let s:spell_dir_type = getftype($VIMSPELLDIR)
-  if s:spell_dir_type != 'dir'
+  if s:spell_dir_type !=# 'dir'
     if !empty(s:spell_dir_type)
       call delete($VIMSPELLDIR)
     endif

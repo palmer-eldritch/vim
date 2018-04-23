@@ -59,10 +59,16 @@
 " }
 
 " Languages {
+
   " Python {
     " jedi plugin for deoplete
     Plug 'zchee/deoplete-jedi'
   " }
+
+  " Vimscript {
+    Plug 'Shougo/neco-vim'
+  " }
+
 " }
 
 " Marks {
@@ -143,7 +149,7 @@
     Plug 'scrooloose/nerdtree', {
       \ 'on': ['NERDTreeToggle', 'NERDTreeFind']
       \ } " {
-      let NERDTreeIgnore = ['\.pyc$', '\.o$', '^__pycache__$']
+      let g:NERDTreeIgnore = ['\.pyc$', '\.o$', '^__pycache__$']
 
       Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags on files
       Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " color file icons
@@ -162,7 +168,7 @@
     " rich status line for vim
     Plug 'vim-airline/vim-airline' " {
       let g:airline_exclude_preview = 0
-      if g:terminal != 'console'
+      if g:terminal !=# 'console'
         let g:airline_powerline_fonts = 1
       endif
     " }
@@ -184,7 +190,7 @@
   " }
 
   " file type glyphs for nerdtree/airline and more
-  if g:terminal != 'console'
+  if g:terminal !=# 'console'
     Plug 'ryanoasis/vim-devicons' " {
       let g:WebDevIconsUnicodeDecorateFolderNodes = 1
       let g:DevIconsEnableFoldersOpenClose = 1
