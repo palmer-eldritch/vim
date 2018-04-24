@@ -63,8 +63,19 @@
   " Python {
     " jedi plugin for deoplete
     Plug 'zchee/deoplete-jedi'
-  " }
 
+    " jedi-vim for code navigation
+    Plug 'davidhalter/jedi-vim' " {
+      let g:jedi#completions_enabled = 0 " disable completion: it's handled by deoplete
+      let g:jedi#smart_auto_mappings = 0
+
+      let g:jedi#goto_command = '<leader>d'
+      let g:jedi#goto_assignments_command = '<leader>g'
+      let g:jedi#documentation_command = 'K'
+      let g:jedi#usages_command = '<leader>u'
+      let g:jedi#rename_command = '<leader>r'
+    " }
+  " }
   " Vimscript {
     Plug 'Shougo/neco-vim'
   " }
@@ -149,7 +160,7 @@
     Plug 'scrooloose/nerdtree', {
       \ 'on': ['NERDTreeToggle', 'NERDTreeFind']
       \ } " {
-      let g:NERDTreeIgnore = ['\.pyc$', '\.o$', '^__pycache__$']
+      let g:NERDTreeIgnore = ['\.pyc$', '\.o$', '^__pycache__$', '\.egg-info$']
 
       Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags on files
       Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " color file icons
