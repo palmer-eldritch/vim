@@ -4,15 +4,19 @@ abbreviate beign being
 abbreviate berak break
 abbreviate braek break
 abbreviate chekc check
+abbreviate contaienr container
 abbreviate conitnue continue
 abbreviate craete create
 abbreviate cretae create
 abbreviate defautl default
 abbreviate emtpy empty
+abbreviate endfi endif
 abbreviate erorr error
 abbreviate eles else
 abbreviate esle else
 abbreviate lese else
+abbreviate excpt except
+abbreviate excetp except
 abbreviate Fales False
 abbreviate faield failed
 abbreviate feild field
@@ -24,6 +28,7 @@ abbreviate filed field
 abbreviate fro for
 abbreviate ofr for
 abbreviate Gti Git
+abbreviate icno icon
 abbreviate improt import
 abbreviate imoprt import
 abbreviate lien line

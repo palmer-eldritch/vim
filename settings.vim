@@ -16,7 +16,7 @@ set encoding=utf-8
 " UI {
 set cursorcolumn    " highlight current column
 set cursorline      " highlight current line
-set colorcolumn=80  " highlight edge of line
+set colorcolumn=120 " highlight edge of line
 set laststatus=2    " always show status line
 "set list            " show invisible characters
 set listchars=nbsp:¬,tab:>-,extends:>,precedes:<,eol:$

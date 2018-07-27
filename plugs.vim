@@ -60,6 +60,19 @@
 
 " Languages {
 
+  " HTML {
+    " Mappings for editing html
+    Plug 'tpope/vim-ragtag'
+  " }
+
+  " Jinja2 {
+    Plug 'Glench/Vim-Jinja2-Syntax'
+  " }
+
+  " Less {
+    autocmd BufNewFile,BufRead *.overrides,*.variables,theme.config setf less
+  " }
+
   " Python {
     " jedi plugin for deoplete
     Plug 'zchee/deoplete-jedi'
@@ -75,6 +88,9 @@
       let g:jedi#usages_command = '<leader>u'
       let g:jedi#rename_command = '<leader>r'
     " }
+
+    " virtualenv support
+    Plug 'lambdalisue/vim-pyenv'
   " }
   " Vimscript {
     Plug 'Shougo/neco-vim'
