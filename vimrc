@@ -43,6 +43,10 @@ endif
   elseif executable('ack')
     let g:search_command = 'ack --nogroup --column --smart-case --nocolor --follow'
   endif
+
+  if executable('fd')
+    let $FZF_DEFAULT_COMMAND = 'fd --type f'
+  endif
 " }
 
 " Vim-plug {

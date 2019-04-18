@@ -6,6 +6,13 @@
     " }
   " }
 
+  " Navigation {
+    " fzf {
+      nnoremap <silent> <C-F1> :Files<CR>
+      nnoremap <silent> <C-F2> :Buffers<CR>
+    " }
+  " }
+
   " UI {
     " nerdtree {
       nnoremap <silent> <leader>n :NERDTreeToggle<CR>

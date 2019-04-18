@@ -89,8 +89,8 @@
       let g:jedi#rename_command = '<leader>r'
     " }
 
-    " virtualenv support
-    Plug 'lambdalisue/vim-pyenv'
+    " pep8 indentation
+    Plug 'Vimjas/vim-python-pep8-indent'
   " }
   " Vimscript {
     Plug 'Shougo/neco-vim'
@@ -101,31 +101,6 @@
 " Marks {
 
   Plug 'kshenoy/vim-signature'  " show marks next to line numbers
-
-" }
-
-" Misc {
-
-  " nice start page
-  Plug 'mhinz/vim-startify' " {
-    let g:startify_session_dir = $VIMCACHEDIR . '/session'
-    let g:startify_change_to_vcs_root = 1
-    let g:startify_files_number = 6
-    let g:startify_session_number = 5
-    let g:starify_session_sort = 1
-    let g:startify_custom_header = []
-    let g:startify_bookmarks = [
-          \ '~/config/vim/vimrc'
-          \ ]
-    let g:startify_list_order = [
-          \ ['    Favoris'],
-          \ 'bookmarks',
-          \ ['    Derniers fichiers édités'],
-          \ 'files',
-          \ ['    Commandes'],
-          \ 'commands'
-          \ ]
-  " }
 
 " }
 
@@ -155,7 +130,13 @@
 
   " Git {
     Plug 'tpope/vim-fugitive'     " git support for vim
-    Plug 'airblade/vim-gitgutter' " show changed lines in sign column
+    " show changed lines in sign column
+    Plug 'airblade/vim-gitgutter' " {
+      highlight link GitGutterAdd DiffAdd
+      highlight link GitGutterChange DiffChange
+      highlight link GitGutterDelete DiffDelete
+      highlight link GitGutterChangeDelete DiffChange
+    " }
   " }
 
 " }
@@ -206,14 +187,6 @@
         let g:airline_theme = 'base16_spacemacs'
       end
     " }
-  " }
-
-  " show indent levels
-  Plug 'nathanaelkane/vim-indent-guides' " {
-    "let g:indent_guides_guide_size = 1
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_color_change_percent = 5
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'tagbar']
   " }
 
   " file type glyphs for nerdtree/airline and more
