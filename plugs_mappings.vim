@@ -8,8 +8,8 @@
 
   " Navigation {
     " fzf {
-      nnoremap <silent> <C-F1> :Files<CR>
-      nnoremap <silent> <C-F2> :Buffers<CR>
+      nnoremap <silent> <C-Space> :Files<CR>
+      nnoremap <silent> <leader>bl :Buffers<CR>
     " }
   " }
 

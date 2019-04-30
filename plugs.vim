@@ -4,7 +4,7 @@
   Plug 'tpope/vim-repeat' " base for repeating complex commands
 
   if !has('nvim')
-    packadd matchit         " extend % to match more than single chars
+    packadd matchit       " extend % to match more than single chars
   endif
 
 " }
@@ -136,6 +136,7 @@
       highlight link GitGutterChange DiffChange
       highlight link GitGutterDelete DiffDelete
       highlight link GitGutterChangeDelete DiffChange
+      autocmd BufWritePost * GitGutter
     " }
   " }
 

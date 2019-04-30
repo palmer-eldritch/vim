@@ -36,7 +36,9 @@ endif
 " }
 
 " Determine executable command to use for search {
-  if executable('ag')
+  if executable('rg')
+    let g:search_command = 'rg --no-heading --column --smart-case --follow --color never --sort-files'
+  elseif executable('ag')
     let g:search_command = 'ag --vimgrep'
   elseif executable('ack-grep')
     let g:search_command = 'ack-grep --nogroup --column --smart-case --nocolor --follow'
@@ -45,7 +47,7 @@ endif
   endif
 
   if executable('fd')
-    let $FZF_DEFAULT_COMMAND = 'fd --type f'
+    let $FZF_DEFAULT_COMMAND = 'fd --type f --color never'
   endif
 " }
 

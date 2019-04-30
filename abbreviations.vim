@@ -17,6 +17,7 @@ abbreviate esle else
 abbreviate lese else
 abbreviate excpt except
 abbreviate excetp except
+abbreviate Excpetion Exception
 abbreviate Fales False
 abbreviate faield failed
 abbreviate feild field

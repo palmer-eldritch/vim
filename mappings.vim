@@ -57,8 +57,8 @@ augroup end
   " shortcuts for resizing windows
   nnoremap <leader>+ 6<C-w>+
   nnoremap <leader>- 6<C-w>-
-  nnoremap <leader>> 10<C-w><
-  nnoremap <leader>< 10<C-w>>
+  nnoremap <leader>> 10<C-w>>
+  nnoremap <leader>< 10<C-w><
   nnoremap <leader>\| <C-w>\|
   nnoremap <leader>_ <C-w>_
   nnoremap <leader>= <C-w>=
@@ -114,7 +114,7 @@ augroup end
   " insert mode mappings {
 
     " toggle case of word touching cursor in insert mode
-    inoremap <C-f> _<Esc>mzg~iw`zmz"_s
+    inoremap <C-f> _<Esc>mzg~iw`z:delm z<CR>"_s
 
     " shift-enter in insert mode to insert a new line below
     inoremap <S-CR> <Esc>O
@@ -123,17 +123,6 @@ augroup end
     inoremap II <Esc>I
     " go to end of line
     inoremap AA <Esc>A
-    " change everything on the right of the cursor
-    inoremap CC <Esc>lC
-    " change whole line
-    inoremap SS <Esc>S
-    " delete line
-    inoremap DD <Esc>ddi
-    " undo
-    inoremap UU <Esc>ui
-    " paste
-    inoremap PP <C-r>0
-
   " }
 
 " }
