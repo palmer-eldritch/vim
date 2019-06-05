@@ -8,6 +8,15 @@ else
   let g:terminal = ''
 endif
 
+" Configure python {
+  if filereadable(expand('~/.pyenv/versions/nvim-py2/bin/python'))
+    let g:python_host_prog = expand('~/.pyenv/versions/nvim-py2/bin/python')
+  endif
+  if filereadable(expand('~/.pyenv/versions/nvim-py3/bin/python'))
+    let g:python3_host_prog = expand('~/.pyenv/versions/nvim-py3/bin/python')
+  endif
+" }
+
 " Configure directories {
   if has('nvim')
     let $VIMUSERDIR = expand('~/.config/nvim')
@@ -37,13 +46,13 @@ endif
 
 " Determine executable command to use for search {
   if executable('rg')
-    let g:search_command = 'rg --no-heading --column --smart-case --follow --color never --sort-files'
+    let g:search_command = 'rg --vimgrep'
   elseif executable('ag')
     let g:search_command = 'ag --vimgrep'
   elseif executable('ack-grep')
-    let g:search_command = 'ack-grep --nogroup --column --smart-case --nocolor --follow'
+    let g:search_command = 'ack-grep --nogroup --column --smart-case --nocolor --follow --sort-files'
   elseif executable('ack')
-    let g:search_command = 'ack --nogroup --column --smart-case --nocolor --follow'
+    let g:search_command = 'ack --nogroup --column --smart-case --nocolor --follow --sort-files'
   endif
 
   if executable('fd')

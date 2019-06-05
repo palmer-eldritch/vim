@@ -4,6 +4,8 @@ endif
 let b:did_ftplugin_json = 1
 
 " use F12 to prettify json using python json.tool
-if executable('python')
+if executable('jq')
+  nnoremap <buffer><silent> <F12> :%!jq '.'<CR>
+elseif executable('python')
   nnoremap <buffer><silent> <F12> :%!python -mjson.tool<CR>
 endif

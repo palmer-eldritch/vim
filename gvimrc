@@ -1,5 +1,8 @@
 if has('nvim')
   GuiFont! DejaVuSansMono Nerd Font:h13
+  GuiTabline 1
+  GuiPopupmenu 0
+  call GuiClipboard()
 else
   set guifont=DejaVuSansMono\ Nerd\ Font\ 10
 endif

@@ -90,8 +90,12 @@
     " }
 
     " pep8 indentation
-    Plug 'Vimjas/vim-python-pep8-indent'
+    Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python', 'python3']}
+
+    " pyenv support
+    Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
   " }
+
   " Vimscript {
     Plug 'Shougo/neco-vim'
   " }
